@@ -14,12 +14,12 @@ namespace domain.Clients.Entities
         public Email Email { get; set; }
         public PhoneNumber PhoneNumber { get; set; }
 
-        public Client(string id, string firstName, string lastName, string email, string phoneNumber)
-        {
-            Id = new ClientId(id);
-            Name = new Name(firstName, lastName);
-            Email = new Email(email);
-            PhoneNumber = new PhoneNumber(phoneNumber);
-        }
+        //public Client(string id, string firstName, string lastName, string email, string phoneNumber)
+        //{
+        //    Id = new ClientId(id);
+        //    Name = new Name(firstName, lastName);
+        //    Email = new Email(email);
+        //    PhoneNumber = new PhoneNumber(phoneNumber);
+        //}
     }
 }

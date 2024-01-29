@@ -13,10 +13,10 @@ namespace infrastructure.Persistence
 
         public void Seed()
         {
-            var client = new Client("xosiosiosdhad", "John", "Smith", "john@gmail.com", "+18202820232");
+            //var client = new Client("xosiosiosdhad", "John", "Smith", "john@gmail.com", "+18202820232");
 
-            dataContext.Add(client);
-            dataContext.SaveChanges();
+            //dataContext.Add(client);
+            //dataContext.SaveChanges();
         }
     }
 }

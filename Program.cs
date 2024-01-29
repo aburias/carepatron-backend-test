@@ -1,5 +1,11 @@
-﻿using infrastructure.Persistence;
+﻿using api.Endpoints.Clients;
+using api.ServiceExtensions;
+using application.Clients.Mappers;
+using application.Clients.Queries.GetAll;
+using infrastructure.Persistence;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,13 +28,14 @@ services.AddCors(options =>
         .Build());
 });
 
+services.AddMediatR(m => m.RegisterServicesFromAssemblies(typeof(GetAllQuery).Assembly));
+services.AddAutoMapper(typeof(ClientProfile).Assembly);
+
+
+services.AddClientServices();
+
 // ioc
 services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase(databaseName: "Test"));
-
-//services.AddScoped<DataSeeder>();
-//services.AddScoped<IClientRepository, ClientRepository>();
-//services.AddScoped<IEmailRepository, EmailRepository>();
-//services.AddScoped<IDocumentRepository, DocumentRepository>();
 
 var app = builder.Build();
 
@@ -40,13 +47,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.MapGet("/clients", async (IClientRepository clientRepository) =>
-//{
-//    return await clientRepository.Get();
-//})
-//.WithName("get clients");
-
 app.UseCors();
+
+app.AddClientEndpoints();
 
 // seed data
 //using (var scope = app.Services.CreateScope())
