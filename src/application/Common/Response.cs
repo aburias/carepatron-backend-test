@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace application.Common
 {
-    public class Response<T> where T : class
+    public class Response<T>
     {
         public bool IsSuccessful { get; set; } = true;
         public string ErrorMessage { get; set; } = string.Empty;

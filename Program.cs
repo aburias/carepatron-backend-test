@@ -1,7 +1,9 @@
 ﻿using api.Endpoints.Clients;
 using api.ServiceExtensions;
+using application.Clients.Commands.CreateClient;
 using application.Clients.Mappers;
 using application.Clients.Queries.GetAll;
+using FluentValidation;
 using infrastructure.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +32,7 @@ services.AddCors(options =>
 
 services.AddMediatR(m => m.RegisterServicesFromAssemblies(typeof(GetAllQuery).Assembly));
 services.AddAutoMapper(typeof(ClientProfile).Assembly);
-
+services.AddValidatorsFromAssembly(typeof(CreateClientValidator).Assembly);
 
 services.AddClientServices();
 

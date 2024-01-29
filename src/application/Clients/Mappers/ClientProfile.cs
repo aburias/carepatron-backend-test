@@ -1,4 +1,5 @@
 ﻿using application.Clients.Commands.CreateClient;
+using application.Clients.Commands.UpdateClient;
 using AutoMapper;
 using domain.Clients.Entities;
 using domain.Clients.ValueObjects;
@@ -28,6 +29,13 @@ namespace application.Clients.Mappers
                 .ForMember(d => d.Name, s => s.MapFrom(src => new Name(src.FirstName, src.LastName)))
                 .ForMember(d => d.Email, s => s.MapFrom(src => new Email(src.Email)))
                 .ForMember(d => d.PhoneNumber, s => s.MapFrom(src => new PhoneNumber(src.PhoneNumber)));
+
+            CreateMap<UpdateClientCommand, Client>()
+                .ForMember(d => d.Id, s => s.MapFrom(src => new ClientId(src.Id)))
+                .ForMember(d => d.Name, s => s.MapFrom(src => new Name(src.FirstName, src.LastName)))
+                .ForMember(d => d.Email, s => s.MapFrom(src => new Email(src.Email)))
+                .ForMember(d => d.PhoneNumber, s => s.MapFrom(src => new PhoneNumber(src.PhoneNumber)));
+
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using application.Clients.Commands.CreateClient;
+using application.Clients.Commands.UpdateClient;
 using application.Clients.Queries.GetAll;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,13 +13,32 @@ namespace api.Endpoints.Clients
         {
             app.MapGet("/clients", async ([FromServices] IMediator mediatr) =>
             {
-                return await mediatr.Send(new GetAllQuery());
+                return Results.Ok(await mediatr.Send(new GetAllQuery()));
             })
             .WithName("get clients");
 
-            app.MapPost("/clients", async([FromServices] IMediator mediatr, [FromBody] CreateClientCommand command) =>
+            app.MapPost("/clients", async (
+                [FromServices] IMediator mediatr,
+                [FromBody] CreateClientCommand command,
+                [FromServices] IValidator<CreateClientCommand> validator) =>
             {
-                return await mediatr.Send(command);
+                var validationResult = validator.Validate(command);
+                if (validationResult.IsValid)
+                    return Results.Ok(await mediatr.Send(command));
+
+                return Results.BadRequest(validationResult.Errors);
+            });
+
+            app.MapPut("/clients", async (
+                [FromServices] IMediator mediatr,
+                [FromBody] UpdateClientCommand command,
+                [FromServices] IValidator<UpdateClientCommand> validator) =>
+            {
+                var validationResult = validator.Validate(command);
+                if (validationResult.IsValid)
+                    return Results.Ok(await mediatr.Send(command));
+
+                return Results.BadRequest(validationResult.Errors);
             });
 
             return app;
