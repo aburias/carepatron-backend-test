@@ -1,6 +1,8 @@
-﻿using domain.Clients.Repositories;
+﻿using application.Abstractions;
+using domain.Clients.Repositories;
 using infrastructure.Persistence;
 using infrastructure.Persistence.Repositories;
+using infrastructure.Services;
 
 namespace api.ServiceExtensions
 {
@@ -12,6 +14,7 @@ namespace api.ServiceExtensions
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IEmailRepository, EmailRepository>();
             services.AddScoped<IDocumentRepository, DocumentRepository>();
+            services.AddScoped<IClientService, ClientService>();
 
             return services;
         }

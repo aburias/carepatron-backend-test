@@ -1,13 +1,8 @@
+using application.Abstractions;
 using infrastructure.Utilities;
-using Microsoft.EntityFrameworkCore;
 
 namespace infrastructure.Persistence.Repositories
 {
-    public interface IEmailRepository
-    {
-        Task Send(string email, string message);
-    }
-
     public class EmailRepository : IEmailRepository
     {
         public async Task Send(string _, string __)

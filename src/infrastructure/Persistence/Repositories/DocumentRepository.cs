@@ -1,12 +1,8 @@
-﻿using infrastructure.Utilities;
+﻿using application.Abstractions;
+using infrastructure.Utilities;
 
 namespace infrastructure.Persistence.Repositories
 {
-    public interface IDocumentRepository
-    {
-        Task SyncDocumentsFromExternalSource(string email);
-    }
-
     public class DocumentRepository : IDocumentRepository
     {
         public async Task SyncDocumentsFromExternalSource(string _)
