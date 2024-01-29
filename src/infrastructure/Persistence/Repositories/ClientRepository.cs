@@ -1,5 +1,6 @@
-﻿using api.Data;
-using api.Models;
+﻿using domain.Clients;
+using infrastructure.Persistence;
+using infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Repositories
@@ -29,8 +30,8 @@ namespace api.Repositories
             await dataContext.AddAsync(client);
             await dataContext.SaveChangesAsync();
 
-            await emailRepository.Send(client.Email, "Hi there - welcome to my Carepatron portal.");
-            await documentRepository.SyncDocumentsFromExternalSource(client.Email);
+            await emailRepository.Send(client.Email.Value, "Hi there - welcome to my Carepatron portal.");
+            await documentRepository.SyncDocumentsFromExternalSource(client.Email.Value);
         }
 
         public Task<Client[]> Get()
@@ -47,12 +48,11 @@ namespace api.Repositories
 
             if (existingClient.Email != client.Email)
             {
-                await emailRepository.Send(client.Email, "Hi there - welcome to my Carepatron portal.");
-                await documentRepository.SyncDocumentsFromExternalSource(client.Email);
+                await emailRepository.Send(client.Email.Value, "Hi there - welcome to my Carepatron portal.");
+                await documentRepository.SyncDocumentsFromExternalSource(client.Email.Value);
             }
 
-            existingClient.FirstName = client.FirstName;
-            existingClient.LastName = client.LastName;
+            existingClient.Name = client.Name;
             existingClient.Email = client.Email;
             existingClient.PhoneNumber = client.PhoneNumber;
 

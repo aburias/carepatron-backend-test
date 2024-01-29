@@ -1,7 +1,8 @@
-﻿using api.Models;
+﻿using domain.Clients;
+using infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.Data
+namespace infrastructure.Persistence
 {
     public class DataContext : DbContext
     {
@@ -15,8 +16,8 @@ namespace api.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            builder.Entity<Client>().HasKey(x => x.Id);
+            builder.ApplyConfiguration(new ClientConfiguration());
+            //new ClientConfiguration().Configure(builder.Entity<Client>());
         }
     }
 }

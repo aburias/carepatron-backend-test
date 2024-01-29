@@ -1,9 +1,7 @@
-using api.Data;
-using api.Models;
-using api.Utilities;
+using infrastructure.Utilities;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.Repositories
+namespace infrastructure.Persistence.Repositories
 {
     public interface IEmailRepository
     {

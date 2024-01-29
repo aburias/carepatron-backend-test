@@ -1,6 +1,4 @@
-﻿using api.Data;
-using api.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,12 +22,12 @@ services.AddCors(options =>
 });
 
 // ioc
-services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase(databaseName: "Test"));
+//services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase(databaseName: "Test"));
 
-services.AddScoped<DataSeeder>();
-services.AddScoped<IClientRepository, ClientRepository>();
-services.AddScoped<IEmailRepository, EmailRepository>();
-services.AddScoped<IDocumentRepository, DocumentRepository>();
+//services.AddScoped<DataSeeder>();
+//services.AddScoped<IClientRepository, ClientRepository>();
+//services.AddScoped<IEmailRepository, EmailRepository>();
+//services.AddScoped<IDocumentRepository, DocumentRepository>();
 
 var app = builder.Build();
 
@@ -41,21 +39,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/clients", async (IClientRepository clientRepository) =>
-{
-    return await clientRepository.Get();
-})
-.WithName("get clients");
+//app.MapGet("/clients", async (IClientRepository clientRepository) =>
+//{
+//    return await clientRepository.Get();
+//})
+//.WithName("get clients");
 
 app.UseCors();
 
 // seed data
-using (var scope = app.Services.CreateScope())
-{
-    var dataSeeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dataSeeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
 
-    dataSeeder.Seed();
-}
+//    dataSeeder.Seed();
+//}
 
 // run app
 app.Run();

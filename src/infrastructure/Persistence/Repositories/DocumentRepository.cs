@@ -1,7 +1,6 @@
-﻿using System;
-using api.Utilities;
+﻿using infrastructure.Utilities;
 
-namespace api.Repositories
+namespace infrastructure.Persistence.Repositories
 {
     public interface IDocumentRepository
     {

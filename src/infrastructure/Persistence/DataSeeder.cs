@@ -1,6 +1,6 @@
-﻿using api.Models;
+﻿using domain.Clients;
 
-namespace api.Data
+namespace infrastructure.Persistence
 {
     public class DataSeeder
     {

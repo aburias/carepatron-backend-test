@@ -1,5 +1,4 @@
-﻿using System;
-namespace api.Utilities
+﻿namespace infrastructure.Utilities
 {
     public static class ChaosUtility
     {
