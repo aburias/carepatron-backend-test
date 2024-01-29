@@ -1,4 +1,5 @@
-﻿using application.Clients.Queries.GetAll;
+﻿using application.Clients.Commands.CreateClient;
+using application.Clients.Queries.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,11 @@ namespace api.Endpoints.Clients
                 return await mediatr.Send(new GetAllQuery());
             })
             .WithName("get clients");
+
+            app.MapPost("/clients", async([FromServices] IMediator mediatr, [FromBody] CreateClientCommand command) =>
+            {
+                return await mediatr.Send(command);
+            });
 
             return app;
         }

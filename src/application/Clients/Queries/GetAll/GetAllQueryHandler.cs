@@ -24,14 +24,27 @@ namespace application.Clients.Queries.GetAll
 
         public async Task<Response<List<ClientDto>>> Handle(GetAllQuery request, CancellationToken cancellationToken)
         {
-            var allClients = await this.repo.Get();
-            var clients = this.mapper.Map<List<ClientDto>>(allClients);
-            return new Response<List<ClientDto>>()
+            try
             {
-                Data = clients,
-                ErrorMessage = string.Empty,
-                IsSuccessful = false
-            };
+                var allClients = await this.repo.Get();
+                var clients = this.mapper.Map<List<ClientDto>>(allClients);
+                return new Response<List<ClientDto>>()
+                {
+                    Data = clients,
+                    ErrorMessage = string.Empty,
+                    IsSuccessful = true
+                };
+            }
+            catch (Exception ex)
+            {
+                // Could have better way to handle exceptions with custom exceptions and handlers...
+                return new Response<List<ClientDto>>()
+                {
+                    Data = null,
+                    ErrorMessage = ex.Message,
+                    IsSuccessful = false
+                };
+            }
         }
     }
 }

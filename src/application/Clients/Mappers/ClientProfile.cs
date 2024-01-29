@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using application.Clients.Commands.CreateClient;
+using AutoMapper;
 using domain.Clients.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace application.Clients.Mappers
         public ClientProfile()
         {
             CreateMap<Client, ClientDto>();
-            CreateMap<ClientDto, Client>();
+            //CreateMap<ClientDto, Client>();
+            CreateMap<CreateClientCommand, Client>();
         }
     }
 }

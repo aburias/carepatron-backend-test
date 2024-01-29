@@ -10,7 +10,7 @@ namespace domain.Clients.Repositories
     public interface IClientRepository
     {
         Task<Client[]> Get();
-        Task Create(Client client);
+        Task<string> Create(Client client);
         Task Update(Client client);
     }
 }

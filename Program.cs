@@ -52,12 +52,12 @@ app.UseCors();
 app.AddClientEndpoints();
 
 // seed data
-//using (var scope = app.Services.CreateScope())
-//{
-//    var dataSeeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
+using (var scope = app.Services.CreateScope())
+{
+    var dataSeeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
 
-//    dataSeeder.Seed();
-//}
+    dataSeeder.Seed();
+}
 
 // run app
 app.Run();

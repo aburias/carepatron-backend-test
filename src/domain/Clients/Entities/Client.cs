@@ -9,10 +9,10 @@ namespace domain.Clients.Entities
 {
     public class Client
     {
-        public ClientId Id { get; set; }
-        public Name Name { get; set; }
-        public Email Email { get; set; }
-        public PhoneNumber PhoneNumber { get; set; }
+        public required ClientId Id { get; set; }
+        public required Name Name { get; set; }
+        public required Email Email { get; set; }
+        public required PhoneNumber PhoneNumber { get; set; }
 
         //public Client(string id, string firstName, string lastName, string email, string phoneNumber)
         //{

@@ -18,13 +18,15 @@ namespace infrastructure.Persistence.Repositories
             this.documentRepository = documentRepository;
         }
 
-        public async Task Create(Client client)
+        public async Task<string> Create(Client client)
         {
             await dataContext.AddAsync(client);
-            await dataContext.SaveChangesAsync();
+            var result = await dataContext.SaveChangesAsync();
 
             await emailRepository.Send(client.Email.Value, "Hi there - welcome to my Carepatron portal.");
             await documentRepository.SyncDocumentsFromExternalSource(client.Email.Value);
+
+            return client.Id.Value;
         }
 
         public Task<Client[]> Get()
