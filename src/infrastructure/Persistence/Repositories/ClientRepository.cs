@@ -30,9 +30,17 @@ namespace infrastructure.Persistence.Repositories
             return client.Id.Value;
         }
 
-        public Task<Client[]> Get()
+        public async Task<Client[]> Get()
         {
-            return dataContext.Clients.ToArrayAsync();
+            return await dataContext.Clients.ToArrayAsync();
+        }
+
+        public async Task<List<Client>> Search(string query)
+        {
+            if(string.IsNullOrEmpty(query))
+                return await dataContext.Clients.ToListAsync();
+
+            return await dataContext.Clients.Where(c => c.Name.FirstName.ToLower().Contains(query.ToLower()) || c.Name.LastName.ToLower().Contains(query.ToLower())).ToListAsync();
         }
 
         public async Task Update(Client client)

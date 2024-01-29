@@ -12,5 +12,6 @@ namespace domain.Clients.Repositories
         Task<Client[]> Get();
         Task<string> Create(Client client);
         Task Update(Client client);
+        Task<List<Client>> Search(string query);
     }
 }
