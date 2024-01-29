@@ -1,17 +1,10 @@
-﻿using domain.Clients;
+﻿using domain.Clients.Entities;
+using domain.Clients.Repositories;
 using infrastructure.Persistence;
-using infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.Repositories
+namespace infrastructure.Persistence.Repositories
 {
-    public interface IClientRepository
-    {
-        Task<Client[]> Get();
-        Task Create(Client client);
-        Task Update(Client client);
-    }
-
     public class ClientRepository : IClientRepository
     {
         private readonly DataContext dataContext;

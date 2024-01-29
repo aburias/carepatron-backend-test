@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,7 @@ services.AddCors(options =>
 });
 
 // ioc
-//services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase(databaseName: "Test"));
+services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase(databaseName: "Test"));
 
 //services.AddScoped<DataSeeder>();
 //services.AddScoped<IClientRepository, ClientRepository>();

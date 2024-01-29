@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using domain.Clients.ValueObjects;
 
-namespace domain.Clients
+namespace domain.Clients.Entities
 {
     public class Client
     {

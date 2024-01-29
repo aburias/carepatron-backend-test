@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace domain.Clients
+namespace domain.Clients.ValueObjects
 {
     public record Email(string Value);
 }

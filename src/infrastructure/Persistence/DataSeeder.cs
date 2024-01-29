@@ -1,4 +1,4 @@
-﻿using domain.Clients;
+﻿using domain.Clients.Entities;
 
 namespace infrastructure.Persistence
 {

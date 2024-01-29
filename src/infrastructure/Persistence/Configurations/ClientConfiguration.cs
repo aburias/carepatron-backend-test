@@ -1,11 +1,7 @@
-﻿using domain.Clients;
+﻿using domain.Clients.Entities;
+using domain.Clients.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace infrastructure.Persistence.Configurations
 {

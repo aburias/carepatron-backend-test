@@ -1,4 +1,4 @@
-﻿using domain.Clients;
+﻿using domain.Clients.Entities;
 using infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
