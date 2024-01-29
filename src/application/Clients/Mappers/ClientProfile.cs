@@ -1,6 +1,7 @@
 ﻿using application.Clients.Commands.CreateClient;
 using AutoMapper;
 using domain.Clients.Entities;
+using domain.Clients.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,20 @@ namespace application.Clients.Mappers
     {
         public ClientProfile()
         {
-            CreateMap<Client, ClientDto>();
+            CreateMap<Client, ClientDto>()
+                .ForMember(d => d.Id, s => s.MapFrom(src => src.Id.Value))
+                .ForMember(d => d.FirstName, s => s.MapFrom(src => src.Name.FirstName))
+                .ForMember(d => d.LastName, s => s.MapFrom(src => src.Name.LastName))
+                .ForMember(d => d.Email, s => s.MapFrom(src => src.Email.Value))
+                .ForMember(d => d.PhoneNumber, s => s.MapFrom(src => src.PhoneNumber.Value));
+
             //CreateMap<ClientDto, Client>();
-            CreateMap<CreateClientCommand, Client>();
+            //CreateMap<List<Client>, List<ClientDto>>();
+            CreateMap<CreateClientCommand, Client>()
+                .ForMember(d => d.Id, s => s.MapFrom(src => new ClientId(src.Id)))
+                .ForMember(d => d.Name, s => s.MapFrom(src => new Name(src.FirstName, src.LastName)))
+                .ForMember(d => d.Email, s => s.MapFrom(src => new Email(src.Email)))
+                .ForMember(d => d.PhoneNumber, s => s.MapFrom(src => new PhoneNumber(src.PhoneNumber)));
         }
     }
 }

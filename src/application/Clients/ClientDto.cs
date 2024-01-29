@@ -8,6 +8,11 @@ namespace application.Clients
 {
     public class ClientDto
     {
+        public ClientDto()
+        {
+
+        }
+
         public ClientDto(string id, string firstName, string lastName, string email, string phoneNumber)
         {
             Id = id;

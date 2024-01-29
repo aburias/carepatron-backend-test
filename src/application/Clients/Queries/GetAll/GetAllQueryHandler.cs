@@ -27,7 +27,11 @@ namespace application.Clients.Queries.GetAll
             try
             {
                 var allClients = await this.repo.Get();
-                var clients = this.mapper.Map<List<ClientDto>>(allClients);
+                var clients = new List<ClientDto>();
+
+                foreach(var client in allClients)
+                    clients.Add(this.mapper.Map<ClientDto>(client));
+
                 return new Response<List<ClientDto>>()
                 {
                     Data = clients,
